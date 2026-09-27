@@ -164,7 +164,7 @@ writing it is the first step of this candidate.
 | aaf3858c | 2026-07-24 | build(deps): bump the pip group across 2 directories with 1 update (#10) | LOCAL | Dependabot bump, our lockfiles |
 | 3d630f2d | 2026-07-25 | build(deps): cap ruff below 0.16 to hold lint rules steady (#11) | DROP | Superseded by 868300ea rule-set pin |
 | 7d771726 | 2026-07-27 | Run real commands in the required gate checks (#13) | LOCAL | Our CI gate |
-| f1b4d172 | 2026-07-27 | Stop sensor_hx711s overflowing the small MCU targets (#14) | UPSTREAM | hx711s fix start (with #17–#26) |
+| f1b4d172 | 2026-07-27 | Stop sensor_hx711s overflowing the small MCU targets (#14) | UPSTREAM | hx711s fix start (with #17 to #26) |
 | dbb25380 | 2026-07-27 | Drop CONFIG_WANT_LOAD_CELL_PROBE from the test configs (#17) | UNSURE | hx711s series; may be CI-specific workaround |
 | f1b30849 | 2026-07-27 | Average the fused load cell reading without a run-time divide (#18) | UPSTREAM | hx711s series: removes MCU divide |
 | 7b4d0e78 | 2026-07-27 | Send the hx711s high-pass coefficient from the host (#19) | UPSTREAM | hx711s series: host-computed coefficient |
