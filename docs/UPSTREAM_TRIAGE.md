@@ -17,8 +17,14 @@ Classes:
 - **CARRY** (4): someone else's commit that upstream's default branch does not
   have (`git cherry` marks it absent): a KalicoCrew change back-merged here, or
   an OpenCentauri branch squashed in. Not ours to offer, and dropping it on
-  rebase loses the change, so keep it until upstream carries it; it then drops
-  out as patch-equivalent.
+  rebase loses the change, so keep it until upstream carries it. A single
+  back-merged commit then drops out as patch-equivalent. A squash (#32), or a
+  back-merge upstream resolves differently, never will: `git cherry` and rebase
+  match one commit's patch-id against one upstream commit's. Check those by
+  content: read `git diff <carry> upstream/<branch> -- <files it touches>`, and
+  drop the row by hand once upstream has the change. A reverse `git apply
+  --check` is no shortcut, since it fails wherever a later commit edited the
+  same lines, even in a tree that has the change.
 - **UNSURE** (7): the subject and file count do not settle it.
 
 How it was made: each row was classified from the commit subject and its
