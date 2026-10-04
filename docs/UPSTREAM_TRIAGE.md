@@ -13,7 +13,12 @@ Classes:
 
 - **UPSTREAM** (12): general interest, could be offered to OpenCentauri or KalicoCrew.
 - **LOCAL** (29): specific to this machine, the Pono image, or our CI.
-- **DROP** (14): reverted, superseded by a later commit in this list, or noise.
+- **DROP** (10): reverted, superseded by a later commit in this list, or noise.
+- **CARRY** (4): someone else's commit that upstream's default branch does not
+  have (`git cherry` marks it absent): a KalicoCrew change back-merged here, or
+  an OpenCentauri branch squashed in. Not ours to offer, and dropping it on
+  rebase loses the change, so keep it until upstream carries it; it then drops
+  out as patch-equivalent.
 - **UNSURE** (7): the subject and file count do not settle it.
 
 How it was made: each row was classified from the commit subject and its
@@ -28,6 +33,14 @@ Corrected 2026-09-28. The first version counted against `upstream/main` and
 had 153 rows. The 92 rows removed are upstream's own commits on its default
 branch, the hifi4 port among them, so none of them was ours to offer. The
 row for this file's own commit (#42) was added.
+
+Corrected 2026-10-03. Four rows read DROP because the commit already
+existed elsewhere: three KalicoCrew back-merges (#836, #872, #882) and
+OpenCentauri's hx711s-new2 squash (#32). `git cherry
+upstream/rpmsg-with-new-hx71x` marks all four absent from upstream's
+default branch, so a rebase that dropped them would lose the load-cell tap
+analysis, the alternating probe direction, the trapq extraction default and
+the per-channel tare. They are CARRY now.
 
 ## First upstream candidates
 
@@ -66,9 +79,9 @@ hardware first.
 | 5ae76b83 | 2026-05-23 | docs: FQ1 row moved from Deferred-patches to MIGRATED (a30ddf63) | LOCAL | Internal fork-tracking doc bookkeeping |
 | cb8e1130 | 2026-05-23 | docs: FQ2 row updated with anchored Xtensa-strip blocker | DROP | Superseded by 58d475b0 FQ2 update |
 | 58d475b0 | 2026-05-23 | docs: FQ2 row -> MIGRATED via pono-print-os@9c1e207 | LOCAL | Internal tracking doc, references Pono image repo |
-| 32e92f89 | 2026-04-08 | Load Cell Tap Analysis (#836) | DROP | Already upstream KalicoCrew commit, back-merged |
-| 714764d1 | 2026-05-08 | probe: add alternating probe direction support (#882) | DROP | Already upstream KalicoCrew commit, back-merged |
-| 836dcb27 | 2026-04-19 | Default to extracting all moves in the trapq when the end time is not specified. This is the most common use-case. (#872) | DROP | Already upstream KalicoCrew commit, back-merged |
+| 32e92f89 | 2026-04-08 | Load Cell Tap Analysis (#836) | CARRY | KalicoCrew #836, back-merged; OpenCentauri lacks it |
+| 714764d1 | 2026-05-08 | probe: add alternating probe direction support (#882) | CARRY | KalicoCrew #882, back-merged; OpenCentauri lacks it |
+| 836dcb27 | 2026-04-19 | Default to extracting all moves in the trapq when the end time is not specified. This is the most common use-case. (#872) | CARRY | KalicoCrew #872, back-merged; OpenCentauri lacks it |
 | 1f3aee10 | 2026-05-23 | docs: AQ2 KalicoCrew back-merge batch - 3 cherry-picks landed + 4 no-ops + 10 N/A | LOCAL | Fork back-merge log |
 | 0efbde3f | 2026-05-23 | docs: D1 fix - correct Brofalo-only count 11 -> 17 (Class 185 + Class 222) | DROP | Count superseded by bdefaf15 recount |
 | 24873c02 | 2026-05-23 | docs: add SECURITY.md and pivot README with Pono Print fork banner (#1) | LOCAL | Pono fork branding and policy |
@@ -105,7 +118,7 @@ hardware first.
 | 62d00eab | 2026-07-31 | fix(hifi4): validate vring descriptors before dereferencing them (#29) | UPSTREAM | Safety fix; OpenCentauri shares hifi4 code |
 | 9c3d3545 | 2026-07-31 | fix(hifi4): compute the rpmsg payload address as hdr + 1 (#30) | UPSTREAM | Pointer bugfix for OpenCentauri hifi4 |
 | 806a3e5f | 2026-08-08 | Port the auto-merge enabler fix from pono-print-os (#31) | LOCAL | Our auto-merge workflow |
-| aab34595 | 2026-08-08 | Adopt OpenCentauri hx711s-new2: per-channel tare and LOAD_CELL_CALIBRATE TARE (#32) | DROP | Already OpenCentauri's code; not re-offerable |
+| aab34595 | 2026-08-08 | Adopt OpenCentauri hx711s-new2: per-channel tare and LOAD_CELL_CALIBRATE TARE (#32) | CARRY | OpenCentauri's hx711s-new2, absent from their default branch; not re-offerable |
 | 2f0eee3e | 2026-08-19 | Bump the reviewer pin to pick up escalation (#34) | DROP | pono-review caller removed in 1d621440 |
 | 710ad270 | 2026-08-19 | Restore the trailing newline on the reviewer caller (#35) | DROP | pono-review caller removed in 1d621440 |
 | 54e5a0f3 | 2026-08-23 | pono-review: bump the pin to pick up the zero-call guard (#36) | DROP | pono-review caller removed in 1d621440 |
