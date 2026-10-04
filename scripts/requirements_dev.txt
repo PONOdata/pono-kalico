@@ -37,5 +37,5 @@ tomli==2.2.1 ; python_full_version < '3.11'
     # via pytest
 typing-extensions==4.13.2 ; python_full_version < '3.11'
     # via virtualenv
-virtualenv==20.36.1
+virtualenv==21.7.13
     # via pre-commit
