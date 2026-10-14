@@ -11,7 +11,7 @@ concurrency:
 jobs:
   enable:
     if: ${{ github.event.pull_request.draft == false }}
-    runs-on: [self-hosted, X64, Linux]
+    runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
       # A merge attributed to GITHUB_TOKEN creates no workflow runs, so every
