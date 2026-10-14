@@ -12,7 +12,7 @@ jobs:
     # workflow. The local copy is the workaround, not drift.
     uses: ./.github/workflows/reusable-ci.yml
     with:
-      runner_labels: '["self-hosted","X64","Linux","node-one-docker"]'
+      runner_labels: '["ubuntu-latest"]'
       # Every command here was blank, so gate/lint, gate/typecheck, gate/test
       # and gate/build were required while running nothing. This is printer
       # firmware: the thing these checks guard moves a heated nozzle over a

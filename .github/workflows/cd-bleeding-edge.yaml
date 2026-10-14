@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   rebase-bleeding-edge:
-    runs-on: [self-hosted, X64, Linux]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
