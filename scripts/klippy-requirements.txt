@@ -18,23 +18,21 @@ markupsafe==2.1.5
     # via
     #   jinja2
     #   kalico
-msgpack==1.2.1 ; sys_platform != 'win32'
-    # via python-can
-numpy==2.0.2 ; python_full_version < '3.10'
+numpy==2.2.2
     # via kalico
-numpy==2.2.2 ; python_full_version >= '3.10'
-    # via kalico
-packaging==24.2
+packaging==26.3
     # via python-can
 pycparser==2.22
     # via cffi
 pyserial==3.4
     # via kalico
-python-can==4.5.0
+python-can==4.6.1
     # via kalico
-setuptools==83.0.0 ; python_full_version >= '3.12'
+setuptools==84.2.1 ; python_full_version >= '3.12'
     # via kalico
-typing-extensions==4.13.2
+typing-extensions==4.13.2 ; python_full_version >= '3.12'
+    # via python-can
+typing-extensions==4.16.0 ; python_full_version < '3.12'
     # via python-can
 wrapt==1.17.2
     # via python-can

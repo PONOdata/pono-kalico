@@ -2,10 +2,10 @@
 #
 # Any pyproject.toml edit invalidates uv's lock manifest hash, which makes the
 # build gate's `uv export --frozen` diff-check fail, which forces a lock+export
-# update, which declares pytest to dependency-review, which blocks on
-# GHSA-6w46-j5rx-g56g, which cannot be fixed because pytest's 9.0.3 fix needs
-# Python >= 3.10 while this fork supports >= 3.9. A lint-config change should not
-# have to walk into that, so it lives in a file uv never reads.
+# update and a dependency-review pass. A lint-config change should not have to
+# walk into that, so it lives in a file uv never reads. (Until 2026-10-26 that
+# chain ended in a pytest advisory with no fix on Python 3.9; the fork now
+# requires 3.10.)
 #
 # `select` is PINNED. Without it this config inherited ruff's DEFAULT rules, an
 # unstable contract across releases: ruff 0.16 widened the defaults and lit up
