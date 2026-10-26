@@ -18,9 +18,7 @@ markupsafe==2.1.5
     # via
     #   jinja2
     #   kalico
-numpy==2.0.2 ; python_full_version < '3.10'
-    # via kalico
-numpy==2.2.2 ; python_full_version >= '3.10'
+numpy==2.2.2
     # via kalico
 packaging==26.3
     # via python-can
