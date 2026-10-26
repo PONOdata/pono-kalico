@@ -25,7 +25,10 @@ dev = [
   # 2222. ruff-action installs the newest version satisfying this specifier, so
   # the cap is what keeps CI on 0.15.x. Raise deliberately, not incidentally.
   "ruff>=0.9.3,<0.16",
-  "pre-commit>=4.0.1",
+  # Not on Python 3.10: pre-commit pulls virtualenv, which needs filelock>=3.24.2
+  # there, and every filelock that runs on 3.10 sits inside GHSA-v4x8-3wr5-3wq8
+  # (fixed in 4.2.1, which needs 3.11). The CI test jobs use pytest only.
+  "pre-commit>=4.0.1 ; python_full_version != '3.10.*'",
   "pytest-xdist>=3.6.1",
   "pytest>=8.3.4",
 ]
