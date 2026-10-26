@@ -30,7 +30,10 @@ dev = [
   # (fixed in 4.2.1, which needs 3.11). The CI test jobs use pytest only.
   "pre-commit>=4.0.1 ; python_full_version != '3.10.*'",
   "pytest-xdist>=3.6.1",
-  "pytest>=8.3.4",
+  # Python 3.9 stays on master's pytest: the tmpdir fix (GHSA-6w46-j5rx-g56g,
+  # 9.0.3) needs 3.10, so no patched pytest runs on 3.9.
+  "pytest==8.3.4 ; python_full_version < '3.10'",
+  "pytest>=9.0.3 ; python_full_version >= '3.10'",
 ]
 
 [project.urls]
