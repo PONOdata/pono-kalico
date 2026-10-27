@@ -191,7 +191,7 @@ class GCodeDispatch:
         # A "traditional" g-code command is a letter and followed by a number
         try:
             cmd = cmd.upper().split()[0]
-            val = float(cmd[1:])
+            float(cmd[1:])
             return cmd[0].isupper() and cmd[1].isdigit()
         except:
             return False
