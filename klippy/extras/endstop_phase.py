@@ -36,7 +36,7 @@ class PhaseCalc:
             if module is not None:
                 self.tmc_module = module
                 if self.phases is None:
-                    phase_offset, self.phases = module.get_phase_offset()
+                    _phase_offset, self.phases = module.get_phase_offset()
                 break
         if self.phases is not None:
             self.phase_history = [0] * self.phases
